@@ -43,11 +43,12 @@ export class userService {
     return this.http.delete(url).pipe(catchError(this.handleError));}
 
   public uploadProfilePicture(files: File[], id: string) {
-    const url = `${this.REST_API_SERVER}/photo/${id}`;
+    const url = `${this.REST_API_SERVER}/${id}/photo`;
     if (files.length === 0) return;
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
+
     return this.http.post(url, formData, { responseType: "text",}).pipe(catchError(this.handleError));}
 
     

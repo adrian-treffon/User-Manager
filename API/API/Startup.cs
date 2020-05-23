@@ -19,8 +19,8 @@ using FluentValidation.AspNetCore;
 using Application.Interfaces;
 using Infrastructure.Security;
 using Domain;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace API
 {
@@ -97,6 +97,54 @@ namespace API
 
       });
 
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo
+        {
+          Title = "User Manager API",
+          Description = "A simple .NET Core Web API",
+          Version = "v1"
+        });
+
+        OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
+        {
+          Name = "Bearer",
+          BearerFormat = "JWT",
+          Scheme = "bearer",
+          Description = "Specify the authorization token.",
+          In = ParameterLocation.Header,
+          Type = SecuritySchemeType.Http,
+        };
+        c.AddSecurityDefinition("jwt_auth", securityDefinition);
+
+        // Make sure swagger UI requires a Bearer token specified
+        OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme()
+        {
+          Reference = new OpenApiReference()
+          {
+            Id = "jwt_auth",
+            Type = ReferenceType.SecurityScheme
+          }
+        };
+
+        OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
+        {
+            {securityScheme, new string[] { }},
+        };
+        c.AddSecurityRequirement(securityRequirements);
+
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        c.IncludeXmlComments(xmlPath);
+      });
+
+
+      services.ConfigureSwaggerGen(options =>
+     {
+       
+       options.CustomSchemaIds(x => x.FullName);
+     });
+
       services.AddScoped<IJwtGenerator, JwtGenerator>();
     }
 
@@ -105,6 +153,14 @@ namespace API
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       app.UseMiddleware<ErrorHandlingMiddleware>();
+
+
+
+      app.UseSwagger();
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+      });
 
       app.UseDefaultFiles();
       app.UseStaticFiles(new StaticFileOptions()
