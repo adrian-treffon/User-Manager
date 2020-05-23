@@ -17,6 +17,7 @@ import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './_services/AuthService';
 import { UserRoleDirective } from './_helpers/UserRoleDirective';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -30,7 +31,8 @@ import { UserRoleDirective } from './_helpers/UserRoleDirective';
     CreateComponent,
     EditComponent,
     LoginComponent,
-    UserRoleDirective
+    UserRoleDirective,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

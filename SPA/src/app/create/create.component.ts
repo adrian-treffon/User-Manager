@@ -10,7 +10,7 @@ import {Router} from "@angular/router"
   styleUrls: ['./create.component.css']
 })
 
-export class CreateComponent implements OnInit {
+export class CreateComponent  {
 
   public createForm : FormGroup;
   constructor(private formBuilder: FormBuilder,private userService: userService,private router: Router) {
@@ -20,9 +20,6 @@ export class CreateComponent implements OnInit {
       lastName: ['', Validators.required],
       profession: ['', Validators.required],
     });
-  }
-
-  ngOnInit(): void {
   }
 
  public onSubmit(user: User) {

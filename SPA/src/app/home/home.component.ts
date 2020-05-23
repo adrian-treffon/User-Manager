@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public dataLoaded = false;
 
 
-  constructor(private userService: userService,private authService : AuthService) {}
+  constructor(private userService: userService) {}
 
   public getUsers() {
     this.userService.getUsers().subscribe(data => {

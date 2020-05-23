@@ -1,0 +1,15 @@
+form{
+  margin: 50px auto;
+  width: 30%;
+}
+
+label{
+  text-align: right;
+}
+
+
+
+.alert{
+  margin-top: 5px;
+  padding: 3px;
+}

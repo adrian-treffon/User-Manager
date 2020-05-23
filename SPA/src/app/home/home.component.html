@@ -7,11 +7,6 @@
   </button>
 
 
-  <button *appUserRole="'Admin'" class="btn btn-outline-dark text-white" routerLink="/create">
-    Stwórz
-  </button>
-
-
 <app-table
   *ngIf="tableView && dataLoaded"
   [users]="users"
