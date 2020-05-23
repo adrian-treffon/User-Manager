@@ -16,6 +16,8 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './_services/AuthService';
+import { UserRoleDirective } from './_helpers/UserRoleDirective';
+
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { AuthService } from './_services/AuthService';
     DetailsComponent,
     CreateComponent,
     EditComponent,
-    LoginComponent
+    LoginComponent,
+    UserRoleDirective
   ],
   imports: [
     BrowserModule,

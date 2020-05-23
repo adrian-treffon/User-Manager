@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { userService } from "../_services/UserService";
 import { User } from "../_models/user";
+import { AuthService } from '../_services/AuthService';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   public tileView: boolean = true;
   public dataLoaded = false;
 
-  constructor(private userService: userService) {}
+
+  constructor(private userService: userService,private authService : AuthService) {}
 
   public getUsers() {
     this.userService.getUsers().subscribe(data => {
@@ -23,6 +25,7 @@ export class HomeComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+
   ngOnInit(){
      this.getUsers();
   }

@@ -57,20 +57,21 @@ namespace API
       services.AddMediatR(typeof(List.Handler).Assembly);
       services.AddAutoMapper(typeof(List.Handler));
 
-      services.AddControllers(opt => {
-         var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-         opt.Filters.Add(new AuthorizeFilter(policy));
-      })
-      .AddFluentValidation(cfg =>
+
+      services.AddAuthorization(options =>
+      {
+        options.AddPolicy("RequireAdministratorRole",
+           policy => policy.RequireRole(Roles.Admin));
+      });
+
+      services.AddMvc().AddFluentValidation(cfg =>
       {
         cfg.RegisterValidatorsFromAssemblyContaining<Create>();
       });
 
-     
-      var builder = services.AddIdentityCore<AppUser>();
-      var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
-      identityBuilder.AddEntityFrameworkStores<DataContext>();
-      identityBuilder.AddSignInManager<SignInManager<AppUser>>();
+      services.AddDefaultIdentity<AppUser>()
+      .AddEntityFrameworkStores<DataContext>()
+      .AddSignInManager<SignInManager<AppUser>>();
 
       services.Configure<IdentityOptions>(opt =>
       {

@@ -17,6 +17,7 @@
       <td class="text-white">{{ user.id }}</td>
       <td>
         <button
+        *appUserRole="'Admin'"
         class="btn btn-outline-danger text-white font-weight-bold"
         style="width: 100px; margin: 0;"
         (click)="onClick(user.id)">

@@ -1,7 +1,8 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ɵConsole } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { tap } from "rxjs/operators";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+
 
 @Injectable()
 export class AuthService implements CanActivate {
@@ -18,14 +19,24 @@ export class AuthService implements CanActivate {
       ));
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-   const token = localStorage.getItem("token")
-    if (token) {
-        return true;
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    
+    if(this.isLoggedIn())
+    {
+      const allowedRoles = route.data["role"];
+
+      if(allowedRoles && !allowedRoles.includes(localStorage.getItem("role")))
+      {
+          this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+          return false;
+      }
+
+      return true;
     }
 
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     return false;
+
 }
 
   private setSession(authResult) {
@@ -42,7 +53,17 @@ export class AuthService implements CanActivate {
     return localStorage.getItem("token") ? true : false;
   }
 
-  public isLoggedOut(): boolean {
-    return !this.isLoggedIn();
+  public isAdmin() : boolean{
+    
+    const role = localStorage.getItem("role");
+
+    if(role)
+    {
+      if(role == "Admin")
+      return true;
+    }
+
+    return false;
+   
   }
 }

@@ -57,7 +57,7 @@ namespace Application.Users
           FirstName = request.FirstName,
           LastName = request.LastName,
           Profession = request.Profession,
-          Role = "Casual" //dafault role
+          Role = Roles.Casual //dafault role
         };
 
         var result = await _userManager.CreateAsync(user, request.Password);

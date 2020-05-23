@@ -15,22 +15,22 @@ namespace Persistence
 
         var user = new AppUser
         {
-          PhotoUrl = "assets/man.png",
+          PhotoUrl = "http://localhost:5000/resources/images/1.png",
           FirstName = "Adam",
           LastName = "Kowalski",
           Profession = "Dentysta",
           UserName = "user",
-          Role = "Casual"
+          Role = Roles.Casual
         };
 
         var admin = new AppUser
         {
-          PhotoUrl = "assets/woman.png",
+          PhotoUrl = "http://localhost:5000/resources/images/2.png",
           FirstName = "Monika",
           LastName = "Nowak",
           Profession = "Psycholog",
           UserName = "admin",
-          Role = "Admin"
+          Role = Roles.Admin
 
         };
 

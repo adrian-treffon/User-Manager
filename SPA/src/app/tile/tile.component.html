@@ -10,11 +10,12 @@
       </li>
       <li class="list-group-item text-white">{{ user.profession }}</li>
       <li class="list-group-item text-white">{{ user.id }}</li>
-      <li class="list-group-item">
+      <li class="list-group-item" *appUserRole="'Admin'">
         <button
           class="btn btn-outline-danger text-white font-weight-bold"
           style="width: 100%; margin: 0;"
-          (click)="onClick(user.id)">
+          (click)="onClick(user.id)"
+         >
           Usuń
         </button>
       </li>
