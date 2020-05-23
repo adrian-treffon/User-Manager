@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { User } from "../interfaces/user";
-import { userService } from "../services/UserService";
+import { User } from "../_models/user";
+import { userService } from "../_services/UserService";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -19,7 +19,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((id) => {
-      this.userService.getUser(parseInt(id.get("id"),10)).subscribe( data => {
+      this.userService.getUser(id.get("id")).subscribe( data => {
         this.user = data;
         this.dataLoaded = true;
       });

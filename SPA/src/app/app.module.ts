@@ -1,16 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
+import { AuthInterceptor} from './_helpers/AuthInterceptor';
+import { ErrorInterceptor} from './_helpers/ErrorInterceptor';
+
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { TileComponent } from './tile/tile.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './_services/AuthService';
 
 
 @NgModule({
@@ -21,7 +26,8 @@ import { EditComponent } from './edit/edit.component';
     HomeComponent,
     DetailsComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,11 @@ import { EditComponent } from './edit/edit.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

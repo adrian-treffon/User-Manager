@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { userService } from "../services/UserService";
-import { User } from "../interfaces/user";
+import { userService } from "../_services/UserService";
+import { User } from "../_models/user";
 
 
 @Component({
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.tileView = true;
   };
 
-  public handleUserDelete = (id : number) => {
+  public handleUserDelete = (id : string) => {
     this.userService.deleteUser(id).subscribe( () => {
       this.getUsers();
    });

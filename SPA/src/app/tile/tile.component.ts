@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { User } from "../interfaces/user";
+import { User } from "../_models/user";
 
 @Component({
   selector: "app-tile",
@@ -12,8 +12,8 @@ export class TileComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
 
-  @Output() public deleteUser: EventEmitter<number> = new EventEmitter<number>();
-  public onClick = (id : number) =>
+  @Output() public deleteUser: EventEmitter<string> = new EventEmitter<string>();
+  public onClick = (id : string) =>
   {
     event.stopPropagation();
     return this.deleteUser.emit(id);

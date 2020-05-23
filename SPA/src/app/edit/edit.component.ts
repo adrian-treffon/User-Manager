@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { userService } from "../services/UserService";
+import { userService } from "../_services/UserService";
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../interfaces/user';
+import { User } from '../_models/user';
 import { FormBuilder,Validators, FormGroup  } from '@angular/forms';
 import {Router} from "@angular/router";
 
@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
   constructor(private userService: userService,private route: ActivatedRoute,private formBuilder: FormBuilder,private router: Router) {
 
    this.route.paramMap.subscribe(id => {
-      this.userService.getUser(parseInt(id.get("id"),10)).subscribe(data => {
+      this.userService.getUser(id.get('id')).subscribe(data => {
         this.user = data;
         this.editForm = this.formBuilder.group({
           firstName: [data.firstName, Validators.required],
