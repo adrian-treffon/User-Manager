@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.tileView = true;
   };
 
-  public handleUserDelete = (id : string) => {
+  public handleUserDelete = (id : number) => {
     this.userService.deleteUser(id).subscribe( () => {
       this.getUsers();
    });

@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
+using AutoMapper;
 using Domain;
 using MediatR;
 using Persistence;
@@ -13,15 +14,17 @@ namespace Application.Users
   {
     public class Query : IRequest<User>
     {
-      public Guid Id { get; set; }
+      public int Id { get; set; }
     }
 
     public class Handler : IRequestHandler<Query, User>
     {
       private readonly DataContext _context;
-      public Handler(DataContext context)
+      private readonly IMapper _mapper;
+      public Handler(DataContext context, IMapper mapper)
       {
         _context = context;
+        _mapper = mapper;
       }
 
       public async Task<User> Handle(Query request, CancellationToken cancellationToken)
@@ -30,7 +33,7 @@ namespace Application.Users
 
         if (user == null) throw new RestException(HttpStatusCode.NotFound, new { user = "Not found" });
 
-        return user;
+        return _mapper.Map<AppUser, User>(user);
       }
 
     }

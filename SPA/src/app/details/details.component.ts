@@ -19,7 +19,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((id) => {
-      this.userService.getUser(id.get("id")).subscribe( data => {
+      this.userService.getUser(parseInt(id.get("id"),10)).subscribe( data => {
         this.user = data;
         this.dataLoaded = true;
       });

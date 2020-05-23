@@ -26,7 +26,7 @@ export class userService {
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.REST_API_SERVER).pipe(catchError(this.handleError));}
 
-  public getUser(id: string): Observable<User> {
+  public getUser(id: number): Observable<User> {
     const url = `${this.REST_API_SERVER}/${id}`;
     return this.http.get<User>(url).pipe(catchError(this.handleError));
   }
@@ -38,17 +38,15 @@ export class userService {
     const url = `${this.REST_API_SERVER}/${user.id}`;
     return this.http.put<User>(url, user, this.httpOptions).pipe(catchError(this.handleError));}
 
-  public deleteUser(id: string) {
+  public deleteUser(id: number) {
     const url = `${this.REST_API_SERVER}/${id}`;
     return this.http.delete(url).pipe(catchError(this.handleError));}
 
-  public uploadProfilePicture(files: File[], id: string) {
-    const url = `${this.REST_API_SERVER}/photo/${id}`;
+  public uploadProfilePicture(files: File[], id: number) {
+    const url = `${this.REST_API_SERVER}/${id}/photo`;
     if (files.length === 0) return;
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
     return this.http.post(url, formData, { responseType: "text",}).pipe(catchError(this.handleError));}
-
-    
 }

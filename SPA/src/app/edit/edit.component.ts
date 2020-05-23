@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
   constructor(private userService: userService,private route: ActivatedRoute,private formBuilder: FormBuilder,private router: Router) {
 
    this.route.paramMap.subscribe(id => {
-      this.userService.getUser(id.get('id')).subscribe(data => {
+      this.userService.getUser(parseInt(id.get("id"),10)).subscribe(data => {
         this.user = data;
         this.editForm = this.formBuilder.group({
           firstName: [data.firstName, Validators.required],

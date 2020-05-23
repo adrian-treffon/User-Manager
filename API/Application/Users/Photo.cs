@@ -1,21 +1,21 @@
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
+using Application.Errors;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Persistence;
+using System.IO;
+
+
 namespace Application.Users
 {
-  using System;
-  using System.Net;
-  using System.Threading;
-  using System.Threading.Tasks;
-  using Application.Errors;
-  using Domain;
-  using FluentValidation;
-  using MediatR;
-  using Microsoft.AspNetCore.Http;
-  using Persistence;
-  using System.IO;
+
   public class Photo
   {
-    public class Command :  IRequest<string>
+    public class Command : IRequest<string>
     {
-      public Guid Id { get; set; }
+      public int Id { get; set; }
       public IFormFile File { get; set; }
     }
 
@@ -33,7 +33,7 @@ namespace Application.Users
         if (request.File == null || request.File.Length == 0)
           throw new RestException(HttpStatusCode.NotFound, new { file = "Not found" });
 
-       
+
 
         var folderName = Path.Combine("Resources", "Images");
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), folderName);
@@ -50,8 +50,8 @@ namespace Application.Users
         {
           await request.File.CopyToAsync(fileStream);
         }
-        
-        dbPath = Path.Combine("http://localhost:5000",dbPath);
+
+        dbPath = Path.Combine("http://localhost:5000", dbPath);
 
         return dbPath;
       }

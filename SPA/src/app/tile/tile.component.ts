@@ -12,8 +12,8 @@ export class TileComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
 
-  @Output() public deleteUser: EventEmitter<string> = new EventEmitter<string>();
-  public onClick = (id : string) =>
+  @Output() public deleteUser: EventEmitter<number> = new EventEmitter<number>();
+  public onClick = (id : number) =>
   {
     event.stopPropagation();
     return this.deleteUser.emit(id);

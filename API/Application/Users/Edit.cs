@@ -13,11 +13,11 @@ namespace Application.Users
   {
     public class Command : IRequest
     {
-       public Guid Id { get; set; }
-       public string PhotoUrl {get;set;} 
-       public string FirstName { get; set; }
-       public string LastName { get; set; }
-       public string Profession { get; set; }
+      public int Id { get; set; }
+      public string PhotoUrl { get; set; }
+      public string FirstName { get; set; }
+      public string LastName { get; set; }
+      public string Profession { get; set; }
     }
     public class CommandValidator : AbstractValidator<Command>
     {
@@ -40,15 +40,15 @@ namespace Application.Users
       public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
       {
         var user = await _context.Users.FindAsync(request.Id);
-        if (user == null) throw new RestException(HttpStatusCode.NotFound,new {activity = "Not found"});
+        if (user == null) throw new RestException(HttpStatusCode.NotFound, new { activity = "Not found" });
 
-        if(user.FirstName == request.FirstName && user.LastName == request.LastName && user.PhotoUrl == request.PhotoUrl && user.Profession == request.Profession) return Unit.Value;
+        if (user.FirstName == request.FirstName && user.LastName == request.LastName && user.PhotoUrl == request.PhotoUrl && user.Profession == request.Profession) return Unit.Value;
 
         user.FirstName = request.FirstName ?? user.FirstName;
         user.LastName = request.LastName ?? user.LastName;
         user.PhotoUrl = request.PhotoUrl ?? user.PhotoUrl;
         user.Profession = request.Profession ?? user.Profession;
-        
+
         var success = await _context.SaveChangesAsync() > 0;
         if (success) return Unit.Value;
         throw new Exception("Problem saving changes");

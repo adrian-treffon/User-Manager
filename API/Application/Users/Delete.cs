@@ -9,11 +9,11 @@ using Persistence;
 
 namespace Application.Users
 {
-    public class Delete
+  public class Delete
   {
     public class Command : IRequest
     {
-      public Guid Id { get; set; }
+      public int Id { get; set; }
     }
 
     public class Handler : IRequestHandler<Command>
@@ -27,8 +27,8 @@ namespace Application.Users
       public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
       {
         var user = await _context.Users.FindAsync(request.Id);
-        
-        if (user == null) throw new RestException(HttpStatusCode.NotFound,new {user = "Not found"});
+
+        if (user == null) throw new RestException(HttpStatusCode.NotFound, new { user = "Not found" });
 
         _context.Remove(user);
         var success = await _context.SaveChangesAsync() > 0;
