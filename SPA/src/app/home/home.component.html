@@ -1,0 +1,28 @@
+<div class="text-center">
+  <button (click)="showTable()" class="btn btn-outline-dark text-white ">
+    Pokaż tabelę
+  </button>
+  <button (click)="showTile()" class="btn btn-outline-dark text-white">
+    Pokaż kafelki
+  </button>
+
+  <button  class="btn btn-outline-dark text-white" routerLink="/create">
+    Stwórz
+  </button>
+
+
+<app-table
+  *ngIf="tableView && dataLoaded"
+  [users]="users"
+  (deleteUser)="handleUserDelete($event)">
+</app-table>
+
+<div *ngIf="tileView && dataLoaded" class="d-flex justify-content-center" >
+  <app-tile
+    *ngFor="let user of users"
+    [user]="user"
+    (deleteUser)="handleUserDelete($event)">
+  </app-tile>
+</div>
+
+

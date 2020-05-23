@@ -1,0 +1,23 @@
+<div class="card text-white bg-primary mb-3"  routerLink="/users/{{ user.id }}">
+  <img
+    class="card-img-top"
+    [src]="user.photoUrl || 'assets/default2.png' "
+    alt="Card image cap"/>
+  <div class="card-body text-dark text-center">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item text-white">
+        {{ user.firstName }} {{ user.lastName }}
+      </li>
+      <li class="list-group-item text-white">{{ user.profession }}</li>
+      <li class="list-group-item text-white">{{ user.id }}</li>
+      <li class="list-group-item">
+        <button
+          class="btn btn-outline-danger text-white font-weight-bold"
+          style="width: 100%; margin: 0;"
+          (click)="onClick(user.id)">
+          Usuń
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)" *ngIf="dataLoaded" novalidate>
+  <div class="form-group row">
+    <label for="firstName" class="col-form-label col-sm-2">
+      Imię
+    </label>
+
+    <div class="col-sm-10">
+      <input id="firstName" class="form-control" type="text" formControlName="firstName" placeholder="Imię" />
+
+      <div *ngIf="
+          editForm.controls['firstName'].invalid &&
+          (editForm.controls['firstName'].dirty ||
+            editForm.controls['firstName'].touched)
+        " class="alert alert-danger">
+        <div *ngIf="editForm.controls['firstName'].errors.required">
+          Imię jest wymagane
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="lastName" class="col-form-label col-2">
+      Nazwisko
+    </label>
+    <div class="col-10">
+      <input id="lastName" class="form-control" type="text" formControlName="lastName" placeholder="Nazwisko" />
+
+      <div *ngIf="
+          editForm.controls['lastName'].invalid &&
+          (editForm.controls['lastName'].dirty ||
+            editForm.controls['lastName'].touched)
+        " class="alert alert-danger">
+        <div *ngIf="editForm.controls['lastName'].errors.required">
+          Nazwisko jest wymagane
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="profession" class="col-form-label col-sm-2">
+      Zawód
+    </label>
+
+    <div class="col">
+      <input id="profession" class="form-control" type="text" formControlName="profession" placeholder="Zawód" />
+
+      <div *ngIf="
+          editForm.controls['profession'].invalid &&
+          (editForm.controls['profession'].dirty ||
+            editForm.controls['profession'].touched)
+        " class="alert alert-danger">
+        <div *ngIf="editForm.controls['profession'].errors.required">
+          Zawód jest wymagany
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="lastName" class="col-form-label col-2">
+      Zdjęcie
+    </label>
+    <div class="col-10 d-flex align-items-center">
+      <input #fileInput id="fileInput" type="file" accept="image/*" (click)="fileInput.value = null"
+        value="Wybierz zdjęcie" (change)="onSelectFile($event.target.files)" class="form-control-file" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="btn-group dropleft">
+        <button class="btn btn-outline-dark dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" routerLink="/users/{{ user.id }}" style="margin-left: 100px; width: 200px;">
+          Powrót
+        </button>
+      </div>
+      <button class="btn btn-outline-dark text-white float-right" type="submit" [disabled]="
+          !(
+            editForm.invalid ||
+            editForm.controls['firstName'].dirty ||
+            editForm.controls['lastName'].dirty ||
+            editForm.controls['profession'].dirty ||
+            fileUploaded
+          )
+        " style="width: 200px;">
+        Edytuj
+      </button>
+    </div>
+  </div>
+</form>

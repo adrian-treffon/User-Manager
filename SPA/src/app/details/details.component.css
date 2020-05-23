@@ -1,0 +1,24 @@
+
+.candidates-profile-details img {
+  max-width: 250px;
+  background: transparent;
+  margin-top: 20px;
+}
+
+.candidates-profile-details .candidates-profile-name {
+  font-weight: 700;
+}
+
+.candidates-profile-icons .list-inline-item {
+  margin: 0 1px !important;
+}
+
+.section {
+    padding-bottom: 80px;
+    padding-top: 80px;
+    position: relative;
+}
+
+button{
+  width: 200px;
+}

@@ -1,0 +1,27 @@
+.card{
+  margin: 5px 20px 5px 20px;
+  width: 16rem;
+}
+
+.bg-primary {
+  background-color: rgba(255, 255, 255, 0)!important;
+
+}
+img{
+  height: 254px;
+  width: 254px;
+}
+
+li{
+  background-color: rgba(255, 255, 255, 0)!important;
+}
+
+.card:hover{
+  cursor: pointer;
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  transition: all .5s ease;
+}

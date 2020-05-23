@@ -1,0 +1,28 @@
+
+<div class="container" *ngIf="dataLoaded">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="candidates-profile-details text-center">
+          <img
+          [src]="user.photoUrl || 'assets/default2.png' "
+            class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4"
+          />
+          <h4 class="candidates-profile-name mb-2">{{user.firstName}} {{user.lastName}}</h4>
+          <p class="mb-2">
+            {{user.profession}}
+          </p>
+          <ul class="candidates-profile-icons list-inline mb-3">
+            <li class="list-inline-item -50 pr-2 f-16">{{user.id}}</li>
+          </ul>
+          <div class="btn-group dropleft">
+          <button class="btn btn-outline-dark dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLink="/users">
+            Powrót
+          </button>
+          <button class="btn btn-outline-dark text-white ml-1" routerLink="/edit/{{user.id}}">
+           Edytuj
+          </button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
