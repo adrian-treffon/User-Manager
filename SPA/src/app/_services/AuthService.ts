@@ -1,4 +1,4 @@
-import { Injectable, ɵConsole } from "@angular/core";
+import { Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { tap } from "rxjs/operators";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
@@ -27,7 +27,7 @@ export class AuthService implements CanActivate {
 
       if(allowedRoles && !allowedRoles.includes(localStorage.getItem("role")))
       {
-          this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+          this.logout();
           return false;
       }
 
@@ -45,8 +45,7 @@ export class AuthService implements CanActivate {
   }
 
   public logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 

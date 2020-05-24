@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {DecimalPipe} from '@angular/common';
 
 import { AuthInterceptor} from './_helpers/AuthInterceptor';
 import { ErrorInterceptor} from './_helpers/ErrorInterceptor';
@@ -18,7 +20,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './_services/AuthService';
 import { UserRoleDirective } from './_helpers/UserRoleDirective';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -46,7 +47,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthService
+    AuthService,
+    DecimalPipe
   ],
   bootstrap: [AppComponent]
 })

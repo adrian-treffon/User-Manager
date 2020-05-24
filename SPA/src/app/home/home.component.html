@@ -6,12 +6,16 @@
     Pokaż kafelki
   </button>
 
+  <button (click)="clearConfig()" class="btn btn-outline-dark text-white">
+    Wyczyśc filtry
+  </button>
+
   <div class="d-flex justify-content-center p-2">
+
     <ngb-pagination
-      [collectionSize]="collectionSize"
       [(page)]="page"
-      [pageSize]="pageSize"
-      class="mr-3"
+      [(collectionSize)]="collectionSize"
+      [(pageSize)]="pageSize"
     >
     </ngb-pagination>
 
@@ -38,6 +42,9 @@
       <option ngValue="desc">Malejąco</option>
     </select>
 
+   <h3 class="ml-3">Wyszukaj</h3>
+   <input class="form-control w-auto mx-3" type="text" name="filter" [(ngModel)]="filterText"/>
+   
   </div>
 </div>
 
