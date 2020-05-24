@@ -3,6 +3,5 @@ obj
 .vscode
 .DS_Store
 appsettings.json
-*.db
 wwwroot
 publish
