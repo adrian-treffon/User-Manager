@@ -5,6 +5,9 @@ import { throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { User } from "../_models/user";
 
+import { ExportToCsv } from 'export-to-csv';
+
+
 @Injectable({
   providedIn: "root",
 })
@@ -49,4 +52,20 @@ export class userService {
     const formData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
     return this.http.post(url, formData, { responseType: "text",}).pipe(catchError(this.handleError));}
+
+    public exportToCSV(data : User[]){
+      const options = { 
+        fieldSeparator: ',',
+        quoteStrings: '"',
+        decimalSeparator: '.',
+        showLabels: true, 
+        useBom: true,
+        useKeysAsHeaders: false,
+        filename : "Użytkownicy",
+        headers : ["Id","Nazwa użytkownika","Link do zdjęcia","Imię","Nazwisko","Zawód","Rola"]
+      };
+
+      const csvExporter = new ExportToCsv(options);
+      csvExporter.generateCsv(data);
+    }
 }
