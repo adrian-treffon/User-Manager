@@ -1,6 +1,5 @@
-<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" novalidate>
-  
-   
+
+<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" novalidate id="form_login">
     <div class="form-group row">
       <label class="col-form-label col-sm-4">Nazwa użytkownika:</label>
       <div class="col-sm-8">
@@ -38,5 +37,4 @@
   style="width: 200px;">
   Zaloguj
 </button>
-
 </form>

@@ -45,7 +45,7 @@ export class EditComponent implements OnInit {
 
   public onSelectFile(files: File[]) {
     this.userService.uploadProfilePicture(files,this.user.id).subscribe(data => {
-      this.user.photoUrl = data;
+      this.user.photoUrl = data.slice(1,data.length-1);
       this.fileUploaded = true;
     })
   }

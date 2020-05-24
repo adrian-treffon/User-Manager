@@ -6,6 +6,8 @@
       <th class="text-white">Nazwisko</th>
       <th class="text-white">Zawód</th>
       <th class="text-white">Id</th>
+      <th class="text-white">Nazwa użytkownika</th>
+      <th class="text-white">Rola</th>
       <th class="text-white" *appUserRole="'Admin'"></th>
     </tr>
   </thead>
@@ -16,6 +18,9 @@
       <td class="text-white">{{ user.lastName }}</td>
       <td class="text-white">{{ user.profession }}</td>
       <td class="text-white">{{ user.id }}</td>
+      <td class="text-white">{{ user.userName }}</td>
+      <td class="text-white">{{ user.role}}</td>
+
       <td>
         <button
         *appUserRole="'Admin'"

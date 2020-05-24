@@ -47,6 +47,7 @@ export class AuthService implements CanActivate {
   public logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    this.router.navigate(['/login']);
   }
 
   public isLoggedIn(): boolean {
@@ -57,13 +58,8 @@ export class AuthService implements CanActivate {
     
     const role = localStorage.getItem("role");
 
-    if(role)
-    {
-      if(role == "Admin")
-      return true;
-    }
-
-    return false;
+    if(role && role == "Admin") return true;
+    else return false;
    
   }
 }

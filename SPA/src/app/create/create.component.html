@@ -1,5 +1,45 @@
 <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)" novalidate>
   <div class="form-group row">
+    <label for="userName" class="col-form-label col-sm-2">
+      Login
+    </label>
+
+    <div class="col-sm-10">
+      <input id="userName" class="form-control" type="text" formControlName="userName" placeholder="Nazwa użytkownika" />
+
+      <div *ngIf="
+          createForm.controls['userName'].invalid &&
+          (createForm.controls['userName'].dirty ||
+            createForm.controls['userName'].touched)
+        " class="alert alert-danger">
+        <div *ngIf="createForm.controls['userName'].errors.required">
+          Nazwa użytkownika jest wymagana
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="password" class="col-form-label col-sm-2">
+      Hasło
+    </label>
+
+    <div class="col-sm-10">
+      <input id="password" class="form-control" type="password" formControlName="password" placeholder="Hasło" />
+
+      <div *ngIf="
+          createForm.controls['password'].invalid &&
+          (createForm.controls['password'].dirty ||
+            createForm.controls['password'].touched)
+        " class="alert alert-danger">
+        <div *ngIf="createForm.controls['password'].errors.required">
+          Hasło jest wymagane
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
     <label for="firstName" class="col-form-label col-sm-2">
       Imię
     </label>

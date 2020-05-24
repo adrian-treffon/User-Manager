@@ -13,29 +13,32 @@ namespace Persistence
       if (!userManager.Users.Any())
       {
 
-        var user = new AppUser
+        for (int i = 0; i < 10; i++)
         {
-          PhotoUrl = "http://localhost:5000/resources/images/1.png",
-          FirstName = "Adam",
-          LastName = "Kowalski",
-          Profession = "Dentysta",
-          UserName = "user",
-          Role = Roles.Casual
-        };
+          var user = new AppUser
+          {
+            PhotoUrl = "http://localhost:5000/resources/images/1.png",
+            FirstName = "Adam",
+            LastName = "Kowalski",
+            Profession = "Dentysta",
+            UserName = $"user{i}",
+            Role = Roles.Casual
+          };
 
-        var admin = new AppUser
-        {
-          PhotoUrl = "http://localhost:5000/resources/images/2.png",
-          FirstName = "Monika",
-          LastName = "Nowak",
-          Profession = "Psycholog",
-          UserName = "admin",
-          Role = Roles.Admin
+          var admin = new AppUser
+          {
+            PhotoUrl = "http://localhost:5000/resources/images/2.png",
+            FirstName = "Monika",
+            LastName = "Nowak",
+            Profession = "Psycholog",
+            UserName = $"admin{i}",
+            Role = Roles.Admin
 
-        };
+          };
 
-        await userManager.CreateAsync(user, "user");
-        await userManager.CreateAsync(admin, "admin");
+          await userManager.CreateAsync(user, "user");
+          await userManager.CreateAsync(admin, "admin");
+        }
 
       }
     }

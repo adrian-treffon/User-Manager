@@ -21,21 +21,13 @@ namespace Application.Users
 
     public class Handler : IRequestHandler<Command, string>
     {
-      private readonly DataContext _context;
-
-      public Handler(DataContext context)
-      {
-        _context = context;
-      }
-
       public async Task<string> Handle(Command request, CancellationToken cancellationToken)
       {
         if (request.File == null || request.File.Length == 0)
           throw new RestException(HttpStatusCode.NotFound, new { file = "Not found" });
 
-
-
-        var folderName = Path.Combine("Resources", "Images");
+    
+        var folderName = Path.Combine("resources", "images");
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
         if (!Directory.Exists(filePath))
@@ -51,8 +43,8 @@ namespace Application.Users
           await request.File.CopyToAsync(fileStream);
         }
 
-        dbPath = Path.Combine("http://localhost:5000", dbPath);
-
+        dbPath = Path.Combine("http://localhost:5000", dbPath).Replace("\\","/");
+  
         return dbPath;
       }
     }

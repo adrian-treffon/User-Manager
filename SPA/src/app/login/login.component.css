@@ -1,15 +1,23 @@
 form{
   margin: 50px auto;
-  width: 30%;
+  width: 30VW;
 }
 
 label{
   text-align: right;
 }
 
-
-
 .alert{
   margin-top: 5px;
   padding: 3px;
+}
+
+
+#form_login {
+  left: 50%;
+  top: 30%;
+  position: absolute;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
 }

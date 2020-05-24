@@ -1,7 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, PipeTransform } from "@angular/core";
 import { userService } from "../_services/UserService";
 import { User } from "../_models/user";
-import { AuthService } from '../_services/AuthService';
+import { FormControl } from '@angular/forms';
+import { DecimalPipe } from '@angular/common';
+import { startWith, map } from 'rxjs/operators';
+
+
+
 
 
 @Component({
@@ -11,21 +16,34 @@ import { AuthService } from '../_services/AuthService';
 })
 export class HomeComponent implements OnInit {
 
-  public users : User[] = [];
+  private _users : User[] = [];
   public tableView: boolean = false;
   public tileView: boolean = true;
   public dataLoaded = false;
 
+  public page = 1;
+  public pageSize = 4;
+  public collectionSize;
+  public filter = new FormControl('');
 
-  constructor(private userService: userService) {}
+  public get users(): User[] {
+    return this._users
+      .map((country, i) => ({id: i + 1, ...country}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
+  constructor(private userService: userService) {
+  }
 
   public getUsers() {
     this.userService.getUsers().subscribe(data => {
-      this.users=data;
+      this._users=data;
       this.dataLoaded = true;
+      this.collectionSize = data.length;
     });
   }
 
+  
   ngOnInit(){
      this.getUsers();
   }

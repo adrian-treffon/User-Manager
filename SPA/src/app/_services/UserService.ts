@@ -48,8 +48,5 @@ export class userService {
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
-
     return this.http.post(url, formData, { responseType: "text",}).pipe(catchError(this.handleError));}
-
-    
 }

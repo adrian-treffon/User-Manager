@@ -16,6 +16,8 @@ export class CreateComponent  {
   constructor(private formBuilder: FormBuilder,private userService: userService,private router: Router) {
 
     this.createForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       profession: ['', Validators.required],

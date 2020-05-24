@@ -1,4 +1,4 @@
-<div class="card text-white bg-primary mb-3"  routerLink="/users/{{ user.id }}">
+<div class="card text-white bg-primary"  routerLink="/users/{{ user.id }}">
   <img
     class="card-img-top"
     [src]="user.photoUrl || 'assets/default2.png' "
@@ -6,10 +6,12 @@
   <div class="card-body text-dark text-center">
     <ul class="list-group list-group-flush">
       <li class="list-group-item text-white">
-        {{ user.firstName }} {{ user.lastName }}
+        {{ user.firstName }} {{ user.lastName }} ({{ user.userName }})
       </li>
       <li class="list-group-item text-white">{{ user.profession }}</li>
+      <li class="list-group-item text-white">{{ user.role }}</li>
       <li class="list-group-item text-white">{{ user.id }}</li>
+
       <li class="list-group-item" *appUserRole="'Admin'">
         <button
           class="btn btn-outline-danger text-white font-weight-bold"

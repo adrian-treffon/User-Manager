@@ -1,24 +1,41 @@
 <div class="text-center">
-  <button (click)="showTable()" class="btn btn-outline-dark text-white ">
+  <button (click)="showTable()" class="btn btn-outline-dark text-white">
     Pokaż tabelę
   </button>
   <button (click)="showTile()" class="btn btn-outline-dark text-white">
     Pokaż kafelki
   </button>
 
+  <div class="d-flex justify-content-center p-2">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      class="mr-3"
+    >
+    </ngb-pagination>
+
+    <select class="custom-select form-control"  [(ngModel)]="pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</div>
 
 <app-table
   *ngIf="tableView && dataLoaded"
   [users]="users"
-  (deleteUser)="handleUserDelete($event)">
+  (deleteUser)="handleUserDelete($event)"
+>
 </app-table>
 
-<div *ngIf="tileView && dataLoaded" class="d-flex justify-content-center" >
-  <app-tile
-    *ngFor="let user of users"
-    [user]="user"
-    (deleteUser)="handleUserDelete($event)">
-  </app-tile>
+<div class="d-flex justify-content-center">
+  <div *ngIf="tileView && dataLoaded" class="row">
+    <app-tile
+      *ngFor="let user of users"
+      [user]="user"
+      (deleteUser)="handleUserDelete($event)">
+    </app-tile>
+  </div>
 </div>
-
-

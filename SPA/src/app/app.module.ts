@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './_services/AuthService';
 import { UserRoleDirective } from './_helpers/UserRoleDirective';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -39,7 +40,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

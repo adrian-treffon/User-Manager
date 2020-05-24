@@ -154,8 +154,6 @@ namespace API
     {
       app.UseMiddleware<ErrorHandlingMiddleware>();
 
-
-
       app.UseSwagger();
       app.UseSwaggerUI(c =>
       {
