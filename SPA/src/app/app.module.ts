@@ -33,7 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EditComponent,
     LoginComponent,
     UserRoleDirective,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

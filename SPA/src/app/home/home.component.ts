@@ -1,13 +1,9 @@
-import { Component, OnInit, PipeTransform } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { userService } from "../_services/UserService";
 import { User } from "../_models/user";
-import { FormControl } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
-import { startWith, map } from 'rxjs/operators';
+import { SortColumn, SortDirection } from '../_models/sorting';
 
-
-
-
+const compare = (v1: string | number, v2: string | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
 @Component({
   selector: "app-home",
@@ -17,19 +13,30 @@ import { startWith, map } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
   private _users : User[] = [];
-  public tableView: boolean = false;
-  public tileView: boolean = true;
+ 
+  public tableView = false;
+  public tileView = true;
   public dataLoaded = false;
 
   public page = 1;
   public pageSize = 4;
   public collectionSize;
-  public filter = new FormControl('');
+
+  public column: SortColumn = 'id';
+  public direction: SortDirection = 'asc';
 
   public get users(): User[] {
     return this._users
-      .map((country, i) => ({id: i + 1, ...country}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+      .sort((a, b) => {
+        let res : number;
+        if(typeof(a[this.column]) == "number")
+        {
+          res = compare(parseFloat(a[this.column]),parseFloat(b[this.column]));
+         
+        }else res = compare(`${a[this.column]}`, `${b[this.column]}`);
+        
+        return this.direction === 'asc' ? res : -res;
+      }).slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
   constructor(private userService: userService) {
@@ -43,7 +50,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  
   ngOnInit(){
      this.getUsers();
   }
@@ -63,5 +69,4 @@ export class HomeComponent implements OnInit {
       this.getUsers();
    });
   }
-
 }

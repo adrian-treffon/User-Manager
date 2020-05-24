@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { User } from "../_models/user";
 
 @Component({
@@ -6,16 +6,16 @@ import { User } from "../_models/user";
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.css"],
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
   @Input() public users: User[]=[];
-
-  constructor() {}
-  ngOnInit(): void {}
-
+ 
+  constructor() {
+  }
+ 
   @Output() public deleteUser: EventEmitter<string> = new EventEmitter<string>();
   public onClick = (id: string) => {
     event.stopPropagation();
     return this.deleteUser.emit(id);
   }
 
-  }
+}

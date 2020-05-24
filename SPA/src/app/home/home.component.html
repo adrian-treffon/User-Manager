@@ -15,11 +15,29 @@
     >
     </ngb-pagination>
 
-    <select class="custom-select form-control"  [(ngModel)]="pageSize">
-      <option [ngValue]="2">2 items per page</option>
-      <option [ngValue]="4">4 items per page</option>
-      <option [ngValue]="6">6 items per page</option>
+    <select class="custom-select form-control mx-3"  [(ngModel)]="pageSize">
+      <option [ngValue]="2">2 na stronę</option>
+      <option [ngValue]="4">4 na stronę</option>
+      <option [ngValue]="6">6 na stronę</option>
+      <option [ngValue]="8">8 na stronę</option>
+      <option [ngValue]="10">10 na stronę</option>
     </select>
+
+    <h3>Sortuj po</h3>
+
+    <select class="custom-select form-control mx-3"  [(ngModel)]="column">
+      <option ngValue="firstName">Imionach</option>
+      <option ngValue="lastName">Nazwiskach</option>
+      <option ngValue="profession">Zawodach</option>
+      <option ngValue="id">Identyfikatorach</option>
+      <option ngValue="userName">Nazwie użytkownika</option>
+    </select>
+
+    <select class="custom-select form-control"  [(ngModel)]="direction">
+      <option ngValue="asc">Rosnąco</option>
+      <option ngValue="desc">Malejąco</option>
+    </select>
+
   </div>
 </div>
 
