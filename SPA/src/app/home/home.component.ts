@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
 
   public get users(): User[] {
     this.saveConfig();
+    this.collectionSize = 0;
     return this._users
       .filter((user) => {
         const term = this.filterText.toLocaleLowerCase();
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
         );
       })
       .sort((a, b) => {
+        this.collectionSize++;
         let res: number;
         if (typeof a[this.column] == "number") {
           res = compare(parseFloat(a[this.column]), parseFloat(b[this.column]));

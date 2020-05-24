@@ -5,31 +5,34 @@
       <th class="text-white">Imię</th>
       <th class="text-white">Nazwisko</th>
       <th class="text-white">Zawód</th>
-      <th class="text-white" >Id</th>
+      <th class="text-white">Id</th>
       <th class="text-white">Nazwa użytkownika</th>
       <th class="text-white">Rola</th>
       <th class="text-white" *appUserRole="'Admin'"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users" routerLink="/users/{{user.id}}">
-      <td><img [src]="user.photoUrl || 'assets/default2.png' " alt="user picture" /></td>
+    <tr *ngFor="let user of users" routerLink="/users/{{ user.id }}">
+      <td>
+        <img [src]="user.photoUrl || 'assets/default.png'" alt="user picture" />
+      </td>
       <td class="text-white">{{ user.firstName }}</td>
       <td class="text-white">{{ user.lastName }}</td>
       <td class="text-white">{{ user.profession }}</td>
       <td class="text-white">{{ user.id }}</td>
       <td class="text-white">{{ user.userName }}</td>
-      <td class="text-white">{{ user.role}}</td>
+      <td class="text-white">{{ user.role }}</td>
 
       <td>
         <button
-        *appUserRole="'Admin'"
-        class="btn btn-outline-danger text-white font-weight-bold"
-        style="width: 100px; margin: 0;"
-        (click)="onClick(user.id)">
-        Usuń
-      </button>
-    </td>
+          *appUserRole="'Admin'"
+          class="btn btn-outline-danger text-white font-weight-bold"
+          style="width: 100px; margin: 0;"
+          (click)="onClick(user.id)"
+        >
+          Usuń
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

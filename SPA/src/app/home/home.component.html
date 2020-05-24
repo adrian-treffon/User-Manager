@@ -15,7 +15,6 @@
   </button>
 
   <div class="d-flex justify-content-center p-2">
-
     <ngb-pagination
       [(page)]="page"
       [(collectionSize)]="collectionSize"
@@ -23,7 +22,7 @@
     >
     </ngb-pagination>
 
-    <select class="custom-select form-control mx-3"  [(ngModel)]="pageSize">
+    <select class="custom-select form-control mx-3" [(ngModel)]="pageSize">
       <option [ngValue]="2">2 na stronę</option>
       <option [ngValue]="4">4 na stronę</option>
       <option [ngValue]="6">6 na stronę</option>
@@ -33,7 +32,7 @@
 
     <h3>Sortuj po</h3>
 
-    <select class="custom-select form-control mx-3"  [(ngModel)]="column">
+    <select class="custom-select form-control mx-3" [(ngModel)]="column">
       <option ngValue="firstName">Imionach</option>
       <option ngValue="lastName">Nazwiskach</option>
       <option ngValue="profession">Zawodach</option>
@@ -41,14 +40,18 @@
       <option ngValue="userName">Nazwie użytkownika</option>
     </select>
 
-    <select class="custom-select form-control"  [(ngModel)]="direction">
+    <select class="custom-select form-control" [(ngModel)]="direction">
       <option ngValue="asc">Rosnąco</option>
       <option ngValue="desc">Malejąco</option>
     </select>
 
-   <h3 class="ml-3">Wyszukaj</h3>
-   <input class="form-control w-auto mx-3" type="text" name="filter" [(ngModel)]="filterText"/>
-   
+    <h3 class="ml-3">Wyszukaj</h3>
+    <input
+      class="form-control w-auto mx-3"
+      type="text"
+      name="filter"
+      [(ngModel)]="filterText"
+    />
   </div>
 </div>
 

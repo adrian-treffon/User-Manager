@@ -33,7 +33,15 @@ namespace Application.Users
 
         _context.Remove(user);
         var success = await _context.SaveChangesAsync() > 0;
-        if (success) return Unit.Value;
+
+        if (success)
+        {
+          var folderName = Path.Combine("resources", "images");
+          var filePath = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+          var photoPath = Path.Combine(filePath, $"{request.Id}.png");
+          File.Delete(photoPath);
+          return Unit.Value;
+        } 
         throw new Exception("Problem saving changes");
       }
     }

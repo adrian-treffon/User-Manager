@@ -61,7 +61,7 @@ export class userService {
         showLabels: true, 
         useBom: true,
         useKeysAsHeaders: false,
-        filename : "Użytkownicy",
+        filename : new Date().toLocaleString(),
         headers : ["Id","Nazwa użytkownika","Link do zdjęcia","Imię","Nazwisko","Zawód","Rola"]
       };
 
