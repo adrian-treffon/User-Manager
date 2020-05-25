@@ -20,8 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './_services/AuthService';
 import { UserRoleDirective } from './_helpers/UserRoleDirective';
 import { NavbarComponent } from './navbar/navbar.component';
-
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,13 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

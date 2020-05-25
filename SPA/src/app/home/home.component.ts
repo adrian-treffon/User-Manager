@@ -26,32 +26,45 @@ export class HomeComponent implements OnInit {
   public direction: SortDirection;
   public filterText: string;
 
-  public get users(): User[] {
-    this.saveConfig();
-    this.collectionSize = 0;
-    return this._users
-      .filter((user) => {
-        const term = this.filterText.toLocaleLowerCase();
-        return (
-          user.firstName.toLowerCase().includes(term) ||
-          user.lastName.toLowerCase().includes(term) ||
-          user.profession.toLowerCase().includes(term) ||
-          user.userName.toLowerCase().includes(term) ||
-          user.id.toString().includes(term)
-        );
-      })
-      .sort((a, b) => {
-        this.collectionSize++;
-        let res: number;
-        if (typeof a[this.column] == "number") {
-          res = compare(parseFloat(a[this.column]), parseFloat(b[this.column]));
-        } else res = compare(`${a[this.column]}`, `${b[this.column]}`);
-        return this.direction === "asc" ? res : -res;
-      })
-      .slice(
-        (this.page - 1) * this.pageSize,
-        (this.page - 1) * this.pageSize + this.pageSize
+  private filter(users : User[]) : User[]
+  {
+    return users.filter((user) => {
+      const term = this.filterText.toLocaleLowerCase();
+      return (
+        user.firstName.toLowerCase().includes(term) ||
+        user.lastName.toLowerCase().includes(term) ||
+        user.profession.toLowerCase().includes(term) ||
+        user.userName.toLowerCase().includes(term) ||
+        user.id.toString().includes(term)
       );
+    });
+  }
+
+  private sort(users : User[]) : User[]
+  {
+    return users.sort((a, b) => {
+      let res: number;
+      if (typeof a[this.column] == "number") {
+        res = compare(parseFloat(a[this.column]), parseFloat(b[this.column]));
+      } else res = compare(`${a[this.column]}`, `${b[this.column]}`);
+      return this.direction === "asc" ? res : -res;
+    })
+  }
+
+  private slice(users : User[]) : User[]
+  {
+    return users.slice(
+      (this.page - 1) * this.pageSize,
+      (this.page - 1) * this.pageSize + this.pageSize
+    );
+  }
+
+  public get users(): User[] {
+    let users = this.sort(this.filter([...this._users]));
+    this.collectionSize = users.length;
+    users = this.slice(users);
+    this.saveConfig();
+    return users;
   }
 
   constructor(private userService: userService) {}
@@ -119,27 +132,7 @@ export class HomeComponent implements OnInit {
 
   public exportToCSV() {
     this.userService.exportToCSV(
-      this._users
-        .filter((user) => {
-          const term = this.filterText.toLocaleLowerCase();
-          return (
-            user.firstName.toLowerCase().includes(term) ||
-            user.lastName.toLowerCase().includes(term) ||
-            user.profession.toLowerCase().includes(term) ||
-            user.userName.toLowerCase().includes(term) ||
-            user.id.toString().includes(term)
-          );
-        })
-        .sort((a, b) => {
-          let res: number;
-          if (typeof a[this.column] == "number") {
-            res = compare(
-              parseFloat(a[this.column]),
-              parseFloat(b[this.column])
-            );
-          } else res = compare(`${a[this.column]}`, `${b[this.column]}`);
-          return this.direction === "asc" ? res : -res;
-        })
-    );
+      this.sort(this.filter([...this._users]))
+      );
   }
 }

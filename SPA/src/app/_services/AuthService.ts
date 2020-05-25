@@ -2,20 +2,20 @@ import { Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { tap } from "rxjs/operators";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable()
 export class AuthService implements CanActivate {
   private REST_API_SERVER = "http://localhost:5000/api/users";
 
-  constructor(private http: HttpClient,private router: Router) {}
+  constructor(private http: HttpClient,private router: Router,private toastr: ToastrService) {}
 
-  public login(username: string, password: string) {
+  public login(username: string, password: string,) {
        return this.http
       .post(`${this.REST_API_SERVER}/login`, { username, password })
       .pipe(tap(
-        data => this.setSession(data),
-        error => console.log(error)
+        data => this.setSession(data)
       ));
   }
 
@@ -28,6 +28,7 @@ export class AuthService implements CanActivate {
       if(allowedRoles && !allowedRoles.includes(localStorage.getItem("role")))
       {
           this.logout();
+          this.toastr.error("Nie masz uprawnień")
           return false;
       }
 
@@ -35,6 +36,7 @@ export class AuthService implements CanActivate {
     }
 
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    this.toastr.error("Zaloguj się, aby korzystać z serwisu")
     return false;
 
 }
