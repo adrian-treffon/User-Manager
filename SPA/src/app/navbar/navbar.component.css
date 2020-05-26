@@ -1,4 +1,14 @@
 .navbar 
 {
-  background-color:	rgb(77, 88, 109)!important;
+  background-color:	transparent;
+}
+
+.navbar-brand{
+  font-size: 28px;
+}
+
+.nav-link
+{
+  cursor: pointer;
+  text-transform: uppercase;
 }

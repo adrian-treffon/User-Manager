@@ -1,20 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf='isAuthorized'>
   <a class="navbar-brand" href="/welcome">User Manager</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse " id="navbarNav">
     <ul class="navbar-nav  mr-auto" >
-      <li class="nav-item active" *ngIf='isAuthorized'>
+      <li class="nav-item active" >
         <a class="nav-link" href="/users">Strona główna<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" *ngIf="isAdmin">
-        <a class="nav-link" (click)="create()" style="cursor: pointer;">Stwórz</a>
+        <a class="nav-link" (click)="create()">Stwórz</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="nav-item active" *ngIf='isAuthorized'><button class="btn btn-outline-light" (click)="logout()">Wyloguj</button></li>
-      <li class="nav-item active" *ngIf='!isAuthorized'><button class="btn btn-outline-light"  (click)="login()">Zaloguj</button></li>
+      <li class="nav-item active"><button class="btn btn-outline-light nav-link" (click)="logout()">Wyloguj</button></li>
     </ul>
   </div>
 </nav>

@@ -60,22 +60,23 @@
       </div>
     </div>
 
+  
     <div class="form-group row">
-      <div class="col-md-8">
-          <p class="text-dark">Wybierz nowe zdjęcie profilowe</p>
-        </div>
-          <div class="col-md-4">
-            <input #fileInput id="fileInput" type="file" accept="image/*" (click)="fileInput.value = null"
-             (change)="onSelectFile($event.target.files)" class="form-control-file" />
+      <div class="col-md-12"> 
+            <div class="custom-file form-control  mx-auto">
+              <input #fileInput  accept="image/*" type="file" class="custom-file-input" id="customFile" (click)="fileInput.value = null"
+              (change)="onSelectFile($event.target.files)">
+              <label class="custom-file-label" for="customFile">Wybierz nowe zdjęcie</label>
+            </div>
           </div>
     </div>
 
     
   </div>
   <div class class="modal-footer">
-    <div class="form-group row">
-      <div class="col-md-12">
-        <button class="btn btn-outline-dark float-right" type="submit" [disabled]="
+    <div class="form-group row no-gutters">
+      <div class="col-md-12 ">
+        <button class="btn btn-outline-dark float-right text-uppercase" type="submit" [disabled]="
         !(
           editForm.invalid ||
           editForm.controls['firstName'].dirty ||

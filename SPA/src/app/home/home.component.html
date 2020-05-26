@@ -1,8 +1,10 @@
 <div class="text-center">
-  <button (click)="showTable()" class="btn btn-outline-dark text-white">
+
+  <button (click)="showTable()" class="btn btn-outline-dark text-white" *ngIf="tileView">
     Pokaż tabelę
   </button>
-  <button (click)="showTile()" class="btn btn-outline-dark text-white">
+
+  <button (click)="showTile()" class="btn btn-outline-dark text-white" *ngIf="tableView">
     Pokaż kafelki
   </button>
 

@@ -31,7 +31,4 @@ export class NavbarComponent {
     this.modalService.open(CreateComponent, { centered: true });
   }
 
-  public login() {
-    this.modalService.open(LoginComponent, { centered: true });
-  }
 }
