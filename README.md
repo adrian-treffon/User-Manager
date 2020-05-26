@@ -1,6 +1,6 @@
 # User Manager
 
-![image](https://user-images.githubusercontent.com/48060008/82762965-5f0d8200-9e04-11ea-90f4-c5c04486db1f.png)
+![image](https://user-images.githubusercontent.com/48060008/82901329-0f42ce00-9f5e-11ea-93a8-88acc88cd00c.png)
 
 **User Manager is a web application written in Angular 9 and .NET Core 3 \
 This simply app allows you to manage users.**
@@ -20,7 +20,7 @@ This simply app allows you to manage users.**
 - JwtBearer
 - Identity
 
-![image](https://user-images.githubusercontent.com/48060008/82763000-a85dd180-9e04-11ea-94a7-040cd8a314b0.png)
+![image](https://user-images.githubusercontent.com/48060008/82901216-ef130f00-9f5d-11ea-98e8-496419a635c1.png)
 
 **Features:**
 - Browsing user collections in two modes
