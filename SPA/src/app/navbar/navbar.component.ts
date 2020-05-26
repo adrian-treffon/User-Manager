@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { AuthService } from '../_services/AuthService';
-import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../login/login.component';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,14 +11,23 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent  {
 
-  constructor(private authService : AuthService,private router: Router) { }
+  constructor(private authService : AuthService,private modalService: NgbModal) { }
 
   get isAuthorized() {
     return this.authService.isLoggedIn();
   }
 
+  get isAdmin() {
+    return this.authService.isAdmin();
+  }
+
   public logout() {
       this.authService.logout();
+  }
+
+  public login() {
+    const modalRef = this.modalService.open(LoginComponent,{ centered: true });
+    modalRef.componentInstance.name = 'Login';
   }
 
 

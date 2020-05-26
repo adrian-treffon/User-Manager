@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../_services/AuthService";
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-login",
@@ -16,7 +17,9 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    public activeModal: NgbActiveModal
   ) {
     this.loginForm = this.fb.group({
       username: ["", Validators.required],
@@ -25,9 +28,9 @@ export class LoginComponent {
   }
 
   public login(val: any) {
-   
     if (val.username && val.password) {
       this.authService.login(val.username, val.password).subscribe(() => {
+        this.activeModal.close();
         this.router.navigateByUrl("/");
         this.toastr.success("Zalogowano pomyślnie")
       },error => {

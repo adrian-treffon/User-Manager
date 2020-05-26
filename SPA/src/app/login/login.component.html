@@ -1,15 +1,40 @@
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="login(loginForm.value)"
+  novalidate
+  id="form_login"
+>
+  <div class="modal-header">
+    <h4 class="modal-title text-dark">Logowanie</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
-<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" novalidate id="form_login">
+  <div class="modal-body">
     <div class="form-group row">
-      <label class="col-form-label col-sm-4">Nazwa użytkownika:</label>
-      <div class="col-sm-8">
-        <input id="username" class="form-control" type="text" name="username" formControlName="username"
-          placeholder="Nazwa użytkownika" />
-        <div *ngIf="
+      <div class="col-md-12">
+        <input
+          id="username"
+          class="form-control"
+          type="text"
+          name="username"
+          formControlName="username"
+          placeholder="Nazwa użytkownika"
+        />
+        <div
+          *ngIf="
             loginForm.controls['username'].invalid &&
             (loginForm.controls['username'].dirty ||
               loginForm.controls['username'].touched)
-          " class="alert alert-danger">
+          "
+          class="alert alert-danger p-1"
+        >
           <div *ngIf="loginForm.controls['username'].errors.required">
             Nazwa użytkownika jest wymagana
           </div>
@@ -18,23 +43,41 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-form-label col-sm-4">Hasło:</label>
-      <div class="col-sm-8">
-        <input id="password" class="form-control" type="password" name="password" formControlName="password"
-          placeholder="Hasło" />
-        <div *ngIf="
+      <div class="col-md-12">
+        <input
+          id="password"
+          class="form-control"
+          type="password"
+          name="password"
+          formControlName="password"
+          placeholder="Hasło"
+        />
+        <div
+          *ngIf="
             loginForm.controls['password'].invalid &&
             (loginForm.controls['password'].dirty ||
-              loginForm.controls['password'].touched)" class="alert alert-danger">
+              loginForm.controls['password'].touched)
+          "
+          class="alert alert-danger p-1"
+        >
           <div *ngIf="loginForm.controls['password'].errors.required">
-           Hasło jest wymagane
+            Hasło jest wymagane
           </div>
         </div>
       </div>
     </div>
-
-   <button class="btn btn-outline-dark text-white float-right" type="submit" [disabled]="loginForm.invalid"
-  style="width: 200px;">
-  Zaloguj
-</button>
+  </div>
+  <div class class="modal-footer">
+    <div class="form-group row">
+      <div class="col-md-12">
+        <button
+          class="btn btn-outline-dark float-right"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Zaloguj
+        </button>
+      </div>
+    </div>
+  </div>
 </form>

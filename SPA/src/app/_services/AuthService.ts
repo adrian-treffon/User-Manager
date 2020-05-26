@@ -27,15 +27,15 @@ export class AuthService implements CanActivate {
 
       if(allowedRoles && !allowedRoles.includes(localStorage.getItem("role")))
       {
-          this.logout();
-          this.toastr.error("Nie masz uprawnień")
+          this.router.navigate(['/users']);
+          this.toastr.error("Nie masz uprawnień do przeglądania tej części strony")
           return false;
       }
 
       return true;
     }
 
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/welcome'], { queryParams: { returnUrl: state.url } });
     this.toastr.error("Zaloguj się, aby korzystać z serwisu")
     return false;
 
@@ -48,7 +48,11 @@ export class AuthService implements CanActivate {
 
   public logout() {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/welcome']).then(() => {
+      //window.location.reload();
+      this.toastr.success("Wylogowano pomyślnie")
+    });
+   
   }
 
   public isLoggedIn(): boolean {

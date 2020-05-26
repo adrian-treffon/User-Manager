@@ -4,8 +4,8 @@ import { HomeComponent } from "./home/home.component";
 import { DetailsComponent } from "./details/details.component";
 import { CreateComponent } from "./create/create.component";
 import { EditComponent } from "./edit/edit.component";
-import { LoginComponent } from "./login/login.component";
 import { AuthService } from "./_services/AuthService";
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
@@ -32,7 +32,7 @@ const routes: Routes = [
     canActivate: [AuthService],
     data: { role: ["Admin"] },
   },
-  { path: "login", component: LoginComponent },
+  { path: "welcome", component: WelcomeComponent },
 ];
 
 @NgModule({
