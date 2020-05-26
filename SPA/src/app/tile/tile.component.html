@@ -1,27 +1,68 @@
-<div class="card text-white bg-primary" routerLink="/users/{{ user.id }}">
-  <img
-    class="card-img-top"
-    [src]="user.photoUrl || 'assets/default.png'"
-    alt="Card image cap"
-  />
-  <div class="card-body text-dark text-center">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item text-white">
-        {{ user.firstName }} {{ user.lastName }} ({{ user.userName }})
-      </li>
-      <li class="list-group-item text-white">{{ user.profession }}</li>
-      <li class="list-group-item text-white">{{ user.role }}</li>
-      <li class="list-group-item text-white">{{ user.id }}</li>
+<div class="card" routerLink="/users/{{ user.id }}">
+  <div class="row no-gutters">
+    <div class="col-md-4 my-auto">
+      <img
+        [src]="user.photoUrl || 'assets/default.png'"
+        class="img-fluid d-block mx-auto rounded-circle img-thumbnail"
+        alt="user's profile photo"
+      />
+    </div>
 
-      <li class="list-group-item" *appUserRole="'Admin'">
-        <button
-          class="btn btn-outline-danger text-white font-weight-bold"
-          style="width: 100%; margin: 0;"
-          (click)="onClick(user.id)"
-        >
-          Usuń
-        </button>
-      </li>
-    </ul>
+    <div class="col-md-8 my-auto justify-content-between no-gutters">
+      <div class="card-body p-2">
+        <h4 class="mb-2">{{ user.firstName }} {{ user.lastName }}</h4>
+        <hr />
+
+        <div class="row">
+          <div class="col-md-8">
+            <label> Nazwa użytkownika</label>
+          </div>
+          <div class="col-md-4">
+            <p>{{ user.userName }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <label>Zawód</label>
+          </div>
+          <div class="col-md-4">
+            <p>{{ user.profession }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <label>Rola</label>
+          </div>
+          <div class="col-md-4">
+            <p>{{ user.role }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <label>Identyfikator</label>
+          </div>
+          <div class="col-md-4">
+            <p>{{ user.id }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"></div>
+
+          <div class="col-md-6">
+            <button
+              *appUserRole="'Admin'"
+              class="btn btn-block btn-outline-danger text-white font-weight-bold"
+              (click)="onClick(user.id)"
+            >
+              Usuń
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

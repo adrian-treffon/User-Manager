@@ -1,25 +1,19 @@
 .card{
-  margin: 5px 20px 5px 20px;
-  width: 16rem;
-  height: 98%;
+  background-color: transparent;
 }
 
-.bg-primary {
-  background-color: rgba(255, 255, 255, 0)!important;
-}
-
-img{
-  height: 254px;
-  width: 254px;
+img {
+  max-width: 200px;
+  background: transparent;
 }
 
 li{
-  background-color: rgba(255, 255, 255, 0)!important;
+  background-color: transparent;
 }
 
 .card:hover{
   cursor: pointer;
-  -webkit-filter: brightness(70%);
+  -webkit-filter: brightness(80%);
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
   -o-transition: all .5s ease;

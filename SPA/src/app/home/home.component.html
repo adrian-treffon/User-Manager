@@ -62,12 +62,15 @@
 >
 </app-table>
 
-<div class="d-flex justify-content-center">
-  <div *ngIf="tileView && dataLoaded" class="row">
+<div class="row justify-content-md-center w-100">
+<div class="col-md-8">
+  <div *ngIf="tileView && dataLoaded" class="card-columns">
     <app-tile
       *ngFor="let user of users"
       [user]="user"
-      (deleteUser)="handleUserDelete($event)">
+      (deleteUser)="handleUserDelete($event)"
+      >
     </app-tile>
   </div>
+</div>
 </div>
