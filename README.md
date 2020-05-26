@@ -1,6 +1,6 @@
 # User Manager
 
-![image](https://user-images.githubusercontent.com/48060008/82942342-1a1a5480-9f98-11ea-8c55-dd2c73973e67.png)
+![image](https://user-images.githubusercontent.com/48060008/82943119-61edab80-9f99-11ea-921b-c16fa5e31b67.png)
 
 **User Manager is a web application written in Angular 9 and .NET Core 3 \
 This simply app allows you to manage users.**
