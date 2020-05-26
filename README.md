@@ -30,5 +30,9 @@ This simply app allows you to manage users.**
 - Saving to .csv
 
 **The application includes a database. To log in to the administrator's account, enter the following data:**
-- Login: admin10
+- Login: admin
 - Password: admin
+
+**To log in as casual user, enter the following data:**
+- Login: user
+- Password: user

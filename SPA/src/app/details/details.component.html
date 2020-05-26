@@ -1,39 +1,83 @@
 <div class="container" *ngIf="dataLoaded">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="candidates-profile-details text-center">
-        <img
-          [src]="user.photoUrl || 'assets/default.png'"
-          class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4"
-        />
-        <h4 class="candidates-profile-name mb-2">
-          {{ user.firstName }} {{ user.lastName }}
-        </h4>
-        <p class="mb-2">
-          {{ user.profession }}
-        </p>
-        <ul class="candidates-profile-icons list-inline mb-3">
-          <li class="list-inline-item -50 pr-2 f-16">{{ user.id }}</li>
-        </ul>
-        <div class="btn-group dropleft">
-          <button
-            class="btn btn-outline-dark dropdown-toggle text-white"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            routerLink="/users"
-          >
-            Powrót
-          </button>
-          <button
-            *appUserRole="'Admin'"
-            class="btn btn-outline-dark text-white ml-1"
-            routerLink="/edit/{{ user.id }}"
-          >
-            Edytuj
-          </button>
+    <div class="card mt-3 w-100">
+      <div class="row">
+        <div class="col-md-5">
+          <div>
+            <img
+              [src]="user.photoUrl || 'assets/default.png'"
+              class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4"
+              alt="user's profile photo"
+            />
+          </div>
+        </div>
+        <div class="col-md-7 my-auto justify-content-between">
+          
+          <div class="card-body">
+            <h4 class="candidates-profile-name mb-2">
+              {{ user.firstName }} {{ user.lastName }}
+            </h4>
+            <hr>
+    
+            <div class="row">
+              <div class="col-md-8">
+                <label> Nazwa użytkownika</label>
+              </div>
+              <div class="col-md-4">
+                <p>{{ user.userName }}</p>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col-md-8">
+                <label>Zawód</label>
+              </div>
+              <div class="col-md-4">
+                <p>{{ user.profession }}</p>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col-md-8">
+                <label>Rola</label>
+              </div>
+              <div class="col-md-4">
+                <p>{{ user.role }}</p>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col-md-8">
+                <label>Identyfikator</label>
+              </div>
+              <div class="col-md-4">
+                <p>{{ user.id }}</p>
+              </div>
+            </div>
+    
+            <div class="btn-group dropleft btn-block">
+              <button
+                class="btn btn-outline-dark dropdown-toggle text-white"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                routerLink="/users"
+              >
+                Powrót
+              </button>
+              <button
+                *appUserRole="'Admin'"
+                class="btn btn-outline-dark text-white ml-1"
+                routerLink="/edit/{{ user.id }}"
+              >
+                Edytuj
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    
   </div>
 </div>
+

@@ -21,7 +21,7 @@ namespace Persistence
             FirstName = "Adam",
             LastName = "Kowalski",
             Profession = "Dentysta",
-            UserName = $"user{i}",
+            UserName = $"user0{i}",
             Role = Roles.Casual
           };
 
@@ -31,35 +31,36 @@ namespace Persistence
             FirstName = "Marek",
             LastName = "Duda",
             Profession = "Murarz",
-            UserName = $"user{i+5}",
-            Role = Roles.Casual
-          };
-
-          var admin = new AppUser
-          {
-            PhotoUrl = "http://localhost:5000/resources/images/2.png",
-            FirstName = "Monika",
-            LastName = "Nowak",
-            Profession = "Psycholog",
-            UserName = $"admin{i+10}",
-            Role = Roles.Admin
-          };
-
-          var user3 = new AppUser
-          {
-            PhotoUrl = "http://localhost:5000/resources/images/4.png",
-            FirstName = "Dorota",
-            LastName = "Słoneczny",
-            Profession = "Uczeń",
-            UserName = $"user{i+15}",
+            UserName = $"user1{i}",
             Role = Roles.Casual
           };
 
           await userManager.CreateAsync(user1, "user");
           await userManager.CreateAsync(user2, "user");
-          await userManager.CreateAsync(user3, "user");
-          await userManager.CreateAsync(admin, "admin");
         }
+
+        var user = new AppUser
+          {
+            PhotoUrl = "http://localhost:5000/resources/images/4.png",
+            FirstName = "Dorota",
+            LastName = "Słoneczny",
+            Profession = "Uczeń",
+            UserName = "user",
+            Role = Roles.Casual
+          };
+
+         var admin = new AppUser
+          {
+            PhotoUrl = "http://localhost:5000/resources/images/2.png",
+            FirstName = "Monika",
+            LastName = "Nowak",
+            Profession = "Psycholog",
+            UserName = "admin",
+            Role = Roles.Admin
+          };
+
+          await userManager.CreateAsync(admin, "admin");
+          await userManager.CreateAsync(user, "user");
 
       }
     }
