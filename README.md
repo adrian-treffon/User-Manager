@@ -36,3 +36,5 @@ This simply app allows you to manage users.**
 **To log in as casual user, enter the following data:**
 - Login: user
 - Password: user
+
+![image](https://user-images.githubusercontent.com/48060008/82923553-6e630b80-9f7b-11ea-9b00-cef872e8c66a.png)
