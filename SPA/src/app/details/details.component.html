@@ -68,7 +68,7 @@
               <button
                 *appUserRole="'Admin'"
                 class="btn btn-outline-dark text-white ml-1"
-                routerLink="/edit/{{ user.id }}"
+                (click)="edit()"
               >
                 Edytuj
               </button>

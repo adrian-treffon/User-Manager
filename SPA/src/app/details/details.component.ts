@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../_models/user";
 import { userService } from "../_services/UserService";
 import { ActivatedRoute } from "@angular/router";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: "app-details",
@@ -14,8 +16,19 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private userService: userService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: NgbModal
   ) {}
+
+  public edit()
+  {
+    const modalRef = this.modalService.open(EditComponent,{ centered: true })
+    modalRef.componentInstance.user = this.user;
+
+    modalRef.result.then(() => {
+      this.ngOnInit();
+    })
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((id) => {
